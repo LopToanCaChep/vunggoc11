@@ -193,16 +193,16 @@ foreach ($row in $csvData) {
 <div class="slide active" id="slide-0">
     <div class="question-card cover-card">
         <div>
-            <div class="cover-eyebrow">KHOA HOC VUNG GOC 11</div>
+            <div class="cover-eyebrow">KHÓA HỌC VỮNG GỐC 11</div>
             <div class="cover-title">$($row.Ten_Buoi)<span class="cover-subject">$($row.Chu_De)</span></div>
-            <div class="cover-subtitle">Chuan bi ly thuyet truoc o nha. Len lop luyen trac nghiem tu cham cung thay Huy nhe!</div>
+            <div class="cover-subtitle">Chuẩn bị lý thuyết trước ở nhà. Lên lớp luyện trắc nghiệm tự chấm cùng thầy Huy nhé!</div>
             <div class="cover-badges">
-                <div class="cover-badge">&#x1F4C5; Ngay hoc: $(if ($row.Ngay_Hoc) { $row.Ngay_Hoc } else { "Chua xep lich" })</div>
-                <div class="cover-badge">&#x23F0; Mo luc: $($row.Gio_Mo)</div>
+                <div class="cover-badge">&#x1F4C5; Ngày học: $(if ($row.Ngay_Hoc) { $row.Ngay_Hoc } else { "Chưa xếp lịch" })</div>
+                <div class="cover-badge">&#x23F0; Mở lúc: $($row.Gio_Mo)</div>
             </div>
         </div>
         <div class="cover-footer">
-            <button class="nb" onclick="go(1)" style="background:var(--yellow); color:var(--dark-blue); border:none; width:100%; padding: 15px; font-weight:800; border-radius:12px; font-size:16px; cursor:pointer;">BAT DAU LUYEN TAP &#x1F680;</button>
+            <button class="nb" onclick="go(1)" style="background:var(--yellow); color:var(--dark-blue); border:none; width:100%; padding: 15px; font-weight:800; border-radius:12px; font-size:16px; cursor:pointer;">BẮT ĐẦU LUYỆN TẬP &#x1F680;</button>
         </div>
     </div>
 </div>
@@ -243,14 +243,14 @@ foreach ($row in $csvData) {
                 $optC = $Matches[4].Trim()
                 $optD = $Matches[5].Trim()
             } else {
-                Write-Host "  ⚠️ Loi dinh dang cau hoi so $qIndex, vui long kiem tra cu phap A. B. C. D." -ForegroundColor Red
+                Write-Host "  âš ï¸ Loi dinh dang cau hoi so $qIndex, vui long kiem tra cu phap A. B. C. D." -ForegroundColor Red
                 continue
             }
 
             $slideHtml = @"
 <div class="slide" id="slide-$qIndex">
     <div class="question-card" data-correct="$qCorrect" data-level="$qLevel">
-        <div class="q-number">Cau $qIndex</div>
+        <div class="q-number">Câu $qIndex</div>
         <div class="q-content">$qText</div>
         <div class="options-grid">
             <div class="option" data-ans="A"><span class="opt-label">A.</span><span class="opt-text">$optA</span></div>
@@ -259,7 +259,7 @@ foreach ($row in $csvData) {
             <div class="option" data-ans="D"><span class="opt-label">D.</span><span class="opt-text">$optD</span></div>
         </div>
         <div class="solution">
-            <div class="solution-title">Loi giai chi tiet <span class="ans-circle">$qCorrect</span></div>
+            <div class="solution-title">Lời giải chi tiết <span class="ans-circle">$qCorrect</span></div>
             <div class="sol-body">$qSol</div>
         </div>
     </div>
@@ -289,7 +289,7 @@ foreach ($row in $csvData) {
 $updatedRows | Export-Csv $CsvPath -NoTypeInformation -Encoding UTF8
 Write-Host "Da cap nhat quan_ly_buoi.csv!" -ForegroundColor Green
 
-# 5. Update mảng BUOI trong index.html
+# 5. Update máº£ng BUOI trong index.html
 Write-Host "Cap nhat index.html..." -ForegroundColor Cyan
 
 $jsonArr = @()
