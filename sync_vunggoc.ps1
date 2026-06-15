@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+﻿$ErrorActionPreference = "Stop"
 
 # ===========================================================
 # VUNG GOC 11 HUB - SYNC & PARSER SCRIPT (SAFE ENCODING)
