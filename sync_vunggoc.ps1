@@ -197,12 +197,12 @@ foreach ($row in $csvData) {
             <div class="cover-title">$($row.Ten_Buoi)<span class="cover-subject">$($row.Chu_De)</span></div>
             <div class="cover-subtitle">Chuan bi ly thuyet truoc o nha. Len lop luyen trac nghiem tu cham cung thay Huy nhe!</div>
             <div class="cover-badges">
-                <div class="cover-badge">📅 Ngay hoc: $(if ($row.Ngay_Hoc) { $row.Ngay_Hoc } else { "Chua xep lich" })</div>
-                <div class="cover-badge">⏰ Mo luc: $($row.Gio_Mo)</div>
+                <div class="cover-badge">&#x1F4C5; Ngay hoc: $(if ($row.Ngay_Hoc) { $row.Ngay_Hoc } else { "Chua xep lich" })</div>
+                <div class="cover-badge">&#x23F0; Mo luc: $($row.Gio_Mo)</div>
             </div>
         </div>
         <div class="cover-footer">
-            <button class="nb" onclick="go(1)" style="background:var(--yellow); color:var(--dark-blue); border:none; width:100%; padding: 15px; font-weight:800; border-radius:12px; font-size:16px; cursor:pointer;">BAT DAU LUYEN TAP 🚀</button>
+            <button class="nb" onclick="go(1)" style="background:var(--yellow); color:var(--dark-blue); border:none; width:100%; padding: 15px; font-weight:800; border-radius:12px; font-size:16px; cursor:pointer;">BAT DAU LUYEN TAP &#x1F680;</button>
         </div>
     </div>
 </div>
