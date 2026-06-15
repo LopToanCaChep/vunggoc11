@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vững Gốc 11 — Toán Cá Chép</title>
+<meta name="description" content="Khóa học Vững Gốc 11 - Xem lý thuyết trước ở nhà, luyện tập trắc nghiệm tự chấm trên lớp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* @CC_SHARED_START */
+/* ══════════════════════════════════════════════════════════
+   TOÁN CÁ CHÉP — Shared Base Styles
+   Source: 03_Automation/shared_assets/cachep-base.css
+   To push changes to all Distribution pages:
+       python 03_Automation/inject_shared.py
+   ══════════════════════════════════════════════════════════ */
+
+/* ========== RESET ========== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ========== DESIGN TOKENS ========== */
+:root{
+  --cc-blue:#0040BE;--cc-blue-deep:#003B99;--cc-blue-sky:#1E85EB;--cc-blue-ice:#3C9EEF;
+  --cc-yellow:#F7C800;--cc-orange:#E24500;--cc-orange-mid:#FF7800;
+  --cc-ink:#0A1B3D;--cc-ink-soft:#2A3A5E;--cc-line:#E6EAF2;
+  --cc-paper:#FFFFFF;--cc-paper-warm:#FFFBF0;--cc-cream:#FFF4D6;
+  --font-display:'Unbounded',system-ui,sans-serif;
+  --font-body:'Manrope',-apple-system,sans-serif;
+  --shadow-sm:0 1px 2px rgba(10,27,61,.08);
+  --shadow-md:0 6px 16px rgba(10,27,61,.10);
+  --r-sm:10px;--r-md:14px;--r-lg:20px;--r-pill:999px;
+}
+
+/* ========== BODY BASE ========== */
+body{
+  background:#FFFFFF;color:var(--cc-ink);
+  font-family:var(--font-body);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;min-height:100dvh;
+}
+
+/* ========== HUB LAYOUT ========== */
+.hub{max-width:720px;margin:0 auto;padding:16px 16px 100px}
+.hub-header{display:flex;align-items:center;justify-content:space-between;padding:12px 0 8px}
+.hub-logo{height:72px;object-fit:contain}
+.hub-mascot{width:88px;height:88px;object-fit:contain;
+  animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* ========== SHARED ANIMATIONS ========== */
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@keyframes bounce{from{transform:translateY(0) rotate(-5deg)}to{transform:translateY(-12px) rotate(5deg)}}
+
+/* ========== SHARED STATES ========== */
+.empty-state{text-align:center;padding:40px 20px;color:var(--cc-ink-soft)}
+.empty-state .icon{font-size:48px;margin-bottom:12px}
+.empty-state p{font-size:14px}
+.hub-footer{text-align:center;padding:24px 0 8px;font-size:12px;color:var(--cc-ink-soft);opacity:.6}
+/* @CC_SHARED_END */
+
+/* ========== VUNGGOC-SPECIFIC OVERRIDES ========== */
+:root{
+  --cc-brand-blue:#0040BE;--cc-brand-dark:#002D72;
+  --shadow-md:0 12px 30px rgba(10,27,61,.12);
+  --r-sm:12px;--r-md:18px;--r-lg:24px;
+}
+
+body {
+  background-color: var(--cc-paper-warm);
+  background-image: radial-gradient(rgba(0, 64, 190, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ========== HERO ========== */
+.hub-hero{
+  background: var(--cc-blue-deep);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  border:none; border-radius:var(--r-lg);
+  padding:36px 24px; margin:12px 0 24px; position:relative; overflow:hidden;
+  box-shadow: 0 15px 35px rgba(0, 64, 190, 0.2);
+}
+.hub-hero h1{
+  font-family:var(--font-display); font-weight:800; font-size:clamp(22px,6vw,32px);
+  color:var(--cc-yellow); line-height:1.2; margin-bottom:8px;
+}
+.hub-hero p{
+  font-size:15px; color:rgba(255,255,255,.9); font-weight:500; letter-spacing: 0.02em;
+}
+
+/* ========== ITEM LIST ========== */
+.exam-list{display:flex; flex-direction:column; gap:12px}
+
+.exam-row{
+  display:flex; align-items:center; gap:16px;
+  padding:18px 20px; background:var(--cc-paper);
+  border:2px solid var(--cc-line); border-radius:var(--r-md);
+  cursor:pointer; transition:all .3s ease; position:relative;
+  text-decoration:none; color:inherit;
+  touch-action:manipulation; -webkit-tap-highlight-color:transparent;
+}
+
+.exam-row.locked {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.exam-row:not(.locked):hover{
+  border-color:var(--cc-blue-deep); background:var(--cc-blue-deep);
+  transform:translateY(-4px); box-shadow:var(--shadow-md);
+}
+.exam-row:not(.locked):hover .exam-title{color:#fff}
+.exam-row:not(.locked):hover .exam-meta{color:rgba(255,255,255,.75)}
+.exam-row:not(.locked):hover .exam-icon{background:#F7C800; color:#003c9e; border-color:#F7C800}
+
+.exam-icon{
+  width:48px; height:48px; border-radius:var(--r-sm); flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; font-weight:800; font-family:var(--font-display);
+  background:#f1f5f9; color:var(--cc-blue-deep);
+  border: 1px solid var(--cc-line);
+  transition: all 0.3s;
+}
+
+.exam-info{flex:1; min-width:0}
+.exam-title{
+  font-weight:800; font-size:16px; color:var(--cc-ink); line-height:1.4;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; transition: color 0.3s;
+}
+.exam-meta{
+  font-size:13px; color:var(--cc-ink-soft); margin-top:4px; 
+  display:flex; flex-wrap:wrap; gap:4px 12px; transition: color 0.3s;
+  align-items: center;
+}
+.exam-tag{
+  font-size:11px; font-weight:700; padding:2px 10px; border-radius:var(--r-pill); 
+  display:inline-block; text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+.exam-tag.unlocked-tag { background:#dcfce7; color:#16a34a }
+.exam-tag.locked-tag { background:#fef2f2; color:#ef4444 }
+.exam-tag.coming-tag { background:#f1f5f9; color:#475569 }
+
+.exam-arrow{
+  width:36px; height:36px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background:none; border:none; transition:all .3s ease;
+  font-size: 20px;
+}
+.exam-row:not(.locked):hover .exam-arrow {
+  transform: translateX(5px);
+}
+
+@media(min-width:640px){
+  .hub{padding:32px 32px 80px}
+  .exam-list{gap:14px}
+  .exam-row{padding:20px 24px}
+  .hub-hero{padding:48px 40px}
+}
+</media>
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#003B99">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="Pic/icon-192.png">
+</head>
+<body>
+
+<!-- ===== MAIN HUB ===== -->
+<div class="hub">
+
+  <!-- Header -->
+  <header class="hub-header">
+    <img class="hub-logo" src="Pic/logoleft.png" alt="Cá Chép" onerror="this.style.display='none'">
+    <img class="hub-mascot" src="Pic/logoright.png" alt="Cá Chép mascot" onerror="this.style.display='none'">
+  </header>
+
+  <!-- Hero -->
+  <section class="hub-hero">
+    <h1 id="heroTitle">Lớp Ôn Thi Vững Gốc 11<br>Toán Thầy Huy</h1>
+    <p id="heroSub">Chép lý thuyết trước ở nhà — Lên lớp chiến trắc nghiệm tự chấm</p>
+  </section>
+
+  <!-- Exam List -->
+  <div class="exam-list" id="buoiList"></div>
+
+  <!-- Footer -->
+  <footer class="hub-footer">Lớp Toán Cá Chép © 2026 · Vững gốc 11 vững vàng lớp 12</footer>
+</div>
+
+<script>
+/* ========== DATA CONFIG ========== */
+// Mảng này sẽ được Robot sync_vunggoc.ps1 tự động ghi đè
+const BUOI = [
+  {
+    id: 'buoi_1',
+    title: 'Đạo hàm (P1) — Bảng & quy tắc',
+    chuDe: 'Đạo hàm',
+    file: 'buoi/buoi_1.html',
+    ngayMo: '2026-06-15',
+    gioMo: '06:00',
+    soCau: 2,
+    trangThai: 'Hien'
+  },
+  {
+    id: 'buoi_2',
+    title: 'Đạo hàm (P2) — Hàm hợp & luyện tổng hợp',
+    chuDe: 'Đạo hàm',
+    file: 'buoi/buoi_2.html',
+    ngayMo: '2026-06-19',
+    gioMo: '06:00',
+    soCau: 0,
+    trangThai: 'An'
+  },
+  {
+    id: 'buoi_3',
+    title: 'Phương trình lượng giác',
+    chuDe: 'Lượng giác',
+    file: 'buoi/buoi_3.html',
+    ngayMo: '2026-06-22',
+    gioMo: '06:00',
+    soCau: 0,
+    trangThai: 'An'
+  },
+  {
+    id: 'buoi_4',
+    title: 'Phương trình mũ – logarit',
+    chuDe: 'Mũ - Logarit',
+    file: 'buoi/buoi_4.html',
+    ngayMo: '2026-06-26',
+    gioMo: '06:00',
+    soCau: 0,
+    trangThai: 'An'
+  },
+  {
+    id: 'buoi_5',
+    title: 'Hình học không gian — Vẽ hình',
+    chuDe: 'Hình học không gian',
+    file: 'buoi/buoi_5.html',
+    ngayMo: '2026-06-29',
+    gioMo: '06:00',
+    soCau: 0,
+    trangThai: 'An'
+  }
+];
+
+// Hàm format hiển thị Thứ ngày tiếng Việt
+function formatUnlockTime(ngayMoStr, gioMoStr) {
+    if (!ngayMoStr) return `Sẽ mở sớm`;
+    try {
+        const d = new Date(ngayMoStr + 'T' + gioMoStr);
+        const thuArr = ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
+        const thu = thuArr[d.getDay()];
+        const ngay = String(d.getDate()).padStart(2, '0');
+        const thang = String(d.getMonth() + 1).padStart(2, '0');
+        return `Mở ${gioMoStr} sáng ${thu}, ${ngay}/${thang}`;
+    } catch(e) {
+        return `Mở ngày ${ngayMoStr} lúc ${gioMoStr}`;
+    }
+}
+
+function renderBuoiList() {
+    const listEl = document.getElementById('buoiList');
+    if (!listEl) return;
+    
+    const now = new Date();
+    
+    // Tạo HTML danh sách
+    let html = '';
+    const visibleBuois = BUOI.filter(b => b.trangThai !== 'An');
+    
+    if (visibleBuois.length === 0) {
+        listEl.innerHTML = `
+            <div class="empty-state">
+                <div class="icon">🐟</div>
+                <p>Danh sách bài học chưa được công bố hoặc đang chuẩn bị.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    visibleBuois.forEach((b, idx) => {
+        let isUnlocked = false;
+        let isComingSoon = (b.trangThai === 'Coming_Soon' || !b.ngayMo);
+        
+        if (!isComingSoon && b.ngayMo && b.gioMo) {
+            const unlockTime = new Date(b.ngayMo + 'T' + b.gioMo);
+            isUnlocked = (now >= unlockTime);
+        }
+        
+        // Icon index (01, 02...)
+        const idxStr = String(idx + 1).padStart(2, '0');
+        
+        let rowClass = 'exam-row';
+        let arrowHtml = '👉';
+        let badgeHtml = '';
+        let metaHtml = '';
+        
+        if (isComingSoon) {
+            rowClass += ' locked coming-soon';
+            arrowHtml = '🔒';
+            badgeHtml = `<span class="exam-tag coming-tag">Sắp ra mắt</span>`;
+            metaHtml = `<span style="color:var(--cc-ink-soft); font-weight: 600;">Bài học đang biên soạn...</span>`;
+        } else if (!isUnlocked) {
+            rowClass += ' locked';
+            arrowHtml = '🔒';
+            badgeHtml = `<span class="exam-tag locked-tag">Đang khóa</span>`;
+            metaHtml = `<span style="color:var(--cc-orange); font-weight: 700;">${formatUnlockTime(b.ngayMo, b.gioMo)}</span>`;
+        } else {
+            badgeHtml = `<span class="exam-tag unlocked-tag">Đã mở</span>`;
+            metaHtml = `<span>Chủ đề: <strong>${b.chuDe}</strong></span> • <span>Số câu: <strong>${b.soCau} câu</strong></span>`;
+        }
+        
+        // Link href
+        const hrefAttr = (isUnlocked && !isComingSoon) ? `href="${b.file}" target="_blank"` : 'javascript:void(0)';
+        
+        html += `
+            <a ${hrefAttr} class="${rowClass}" data-id="${b.id}">
+                <div class="exam-icon">${idxStr}</div>
+                <div class="exam-info">
+                    <div class="exam-title">${b.title}</div>
+                    <div class="exam-meta">
+                        ${badgeHtml}
+                        ${metaHtml}
+                    </div>
+                </div>
+                <div class="exam-arrow">${arrowHtml}</div>
+            </a>
+        `;
+    });
+    
+    listEl.innerHTML = html;
+    
+    // Gắn sự kiện click ngăn chặn nếu bị khóa
+    document.querySelectorAll('.exam-row.locked').forEach(el => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = el.getAttribute('data-id');
+            const item = BUOI.find(b => b.id === id);
+            if (item) {
+                if (item.trangThai === 'Coming_Soon' || !item.ngayMo) {
+                    alert('Bài học này đang được chuẩn bị và sẽ sớm ra mắt nhé!');
+                } else {
+                    alert(`Bài học này hiện đang khóa. Sẽ mở vào lúc: ${formatUnlockTime(item.ngayMo, item.gioMo)}`);
+                }
+            }
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderBuoiList();
+});
+</script>
+</body>
+</html>

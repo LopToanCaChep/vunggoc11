@@ -1,0 +1,26 @@
+{
+  "name": "Vững Gốc 11 — Toán Cá Chép",
+  "short_name": "VữngGốc11",
+  "description": "Tài liệu học tập Vững Gốc 11 — Lớp Toán Cá Chép",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#003B99",
+  "background_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "Pic/logoleft.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "Pic/logoright.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": [
+    "education"
+  ],
+  "lang": "vi"
+}
