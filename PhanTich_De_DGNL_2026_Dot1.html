@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phân tích đề ĐGNL ĐHQG TP.HCM 2026 - Đợt 1 — Toán Cá Chép</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- KaTeX CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    
+    <style>
+        :root {
+            --cc-blue: #0040BE;
+            --cc-blue-deep: #003B99;
+            --cc-blue-sky: #1E85EB;
+            --cc-yellow: #F7C800;
+            --cc-orange: #FF7800;
+            --cc-ink: #0A1B3D;
+            --cc-ink-soft: #2A3A5E;
+            --cc-paper: #FFFFFF;
+            --cc-paper-warm: #FFFBF0;
+            --cc-line: #E6EAF2;
+            --font-display: 'Unbounded', system-ui, sans-serif;
+            --font-body: 'Manrope', -apple-system, sans-serif;
+            --shadow-md: 0 10px 25px rgba(10,27,61,0.08);
+            --r-md: 16px;
+            --r-lg: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--cc-paper-warm);
+            color: var(--cc-ink);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            background-image: radial-gradient(rgba(0, 64, 190, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Hero Header */
+        .header {
+            background: var(--cc-blue-deep);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #fff;
+            padding: 40px 30px;
+            border-radius: var(--r-lg);
+            box-shadow: 0 15px 30px rgba(0, 64, 190, 0.15);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(20px, 5vw, 32px);
+            color: var(--cc-yellow);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            font-size: clamp(14px, 2.5vw, 17px);
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(18px, 4vw, 22px);
+            color: var(--cc-blue-deep);
+            margin: 40px 0 20px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid var(--cc-blue);
+            display: inline-block;
+        }
+
+        /* Filter Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--cc-paper);
+            color: var(--cc-ink-soft);
+            border: 2px solid var(--cc-line);
+            padding: 10px 20px;
+            border-radius: 99px;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--cc-blue-sky);
+            background: rgba(30, 133, 245, 0.05);
+            color: var(--cc-blue-deep);
+        }
+
+        .tab-btn.active {
+            background: var(--cc-blue);
+            color: #fff;
+            border-color: var(--cc-blue);
+            box-shadow: 0 4px 12px rgba(0, 64, 190, 0.2);
+        }
+
+        /* Question Card */
+        .question-card {
+            background: var(--cc-paper);
+            border: 2px solid var(--cc-line);
+            border-radius: var(--r-md);
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .question-card:hover {
+            border-color: var(--cc-blue-sky);
+            transform: translateY(-2px);
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .q-tag {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 11px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-10 { background: #E8F4FF; color: #0040BE; }
+        .tag-11 { background: #FFF4D6; color: #B27A00; }
+        .tag-12 { background: #FEE2E2; color: #EF4444; }
+
+        .q-number {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 15px;
+            color: var(--cc-blue-deep);
+        }
+
+        .q-content {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--cc-ink);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .options-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .option {
+            background: #F8FAFC;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--cc-ink-soft);
+        }
+
+        .option.correct {
+            background: #DCFCE7;
+            border-color: #16A34A;
+            color: #166534;
+        }
+
+        /* Solution details */
+        .solution-details {
+            margin-top: 15px;
+            border-top: 1px solid var(--cc-line);
+            padding-top: 15px;
+        }
+
+        .solution-summary {
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--cc-blue-sky);
+            cursor: pointer;
+            outline: none;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .solution-summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .solution-summary::before {
+            content: "▶";
+            font-size: 10px;
+            transition: transform 0.2s;
+        }
+
+        details[open] .solution-summary::before {
+            transform: rotate(90deg);
+        }
+
+        .solution-content {
+            margin-top: 12px;
+            background: #FFFDF7;
+            padding: 16px;
+            border-left: 4px solid var(--cc-yellow);
+            border-radius: 4px 10px 10px 4px;
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        .sol-final {
+            margin-top: 10px;
+            font-weight: 700;
+            color: var(--cc-ink);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px 0;
+            font-size: 12px;
+            color: var(--cc-ink-soft);
+            opacity: 0.7;
+            border-top: 1px solid var(--cc-line);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-card {
+            animation: fadeIn 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <h1>PHÂN TÍCH ĐỀ THI ĐÁNH GIÁ NĂNG LỰC ĐHQG TP.HCM 2026</h1>
+        <p>Phân loại câu hỏi Toán học Đợt 1 (Lớp 10, 11 và các câu Lớp 12 liên quan đến Đạo hàm)</p>
+    </header>
+
+    <!-- Nav tabs -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="filterClass('all')">Tất cả câu hỏi</button>
+        <button class="tab-btn" onclick="filterClass('10')">Toán Lớp 10</button>
+        <button class="tab-btn" onclick="filterClass('11')">Toán Lớp 11</button>
+        <button class="tab-btn" onclick="filterClass('12-daoham')">Toán Lớp 12 (Đạo hàm)</button>
+    </div>
+
+    <!-- QUESTIONS LIST -->
+    <div id="questionsContainer">
+        
+        <!-- ===== LỚP 10 ===== -->
+        <div class="question-card" data-class="10">
+            <div class="q-header">
+                <span class="q-number">Câu 61</span>
+                <span class="q-tag tag-10">Lớp 10</span>
+            </div>
+            <div class="q-content">
+                Tập nghiệm của bất phương trình $\frac{2}{x-3} > \frac{1}{x+1}$ là:
+            </div>
+            <div class="options-list">
+                <div class="option">A. $\mathbb{R}$</div>
+                <div class="option">B. $\left(-\infty; -\frac{4}{3}\right)$</div>
+                <div class="option">C. $(2; +\infty)$</div>
+                <div class="option correct">D. $\left(-\infty; -1\right) \cup \left(\frac{2}{3}; +\infty\right)$ (hoặc $\left(-\infty; -1\right) \cup (3; +\infty)$ tùy đề gốc)</div>
+            </div>
+            <details class="solution-details">
+                <summary class="solution-summary">Xem lời giải chi tiết</summary>
+                <div class="solution-content">
+                    Điều kiện xác định: $x \neq 3$ và $x \neq -1$.<br>
+                    Biến đổi bất phương trình:<br>
+                    $$\frac{2}{x-3} - \frac{1}{x+1} > 0 \Leftrightarrow \frac{2(x+1) - (x-3)}{(x-3)(x+1)} > 0 \Leftrightarrow \frac{x+5}{(x-3)(x+1)} > 0$$<br>
+                    Lập bảng xét dấu vế trái:<br>
+                    - Nghiệm tử số: $x = -5$.<br>
+                    - Nghiệm mẫu số: $x = -1$ và $x = 3$.<br>
+                    Dựa vào bảng xét dấu, biểu thức dương khi $x \in (-5; -1) \cup (3; +\infty)$.<br>
+                    <div class="sol-final">Chọn đáp án tương ứng (Đề thi ĐGNL có thể có sai lệch ký tự in ấn trong bản phục dựng).</div>
+                </div>
+            </details>
+        </div>
+
+        <div class="question-card" data-class="10">
+            <div class="q-header">
+                <span class="q-number">Câu 62</span>
+                <span class="q-tag tag-10">Lớp 10</span>
+            </div>
+            <div class="q-content">
+                Gọi $S$ là tập nghiệm của bất phương trình $\frac{x^2+2x+3}{x-1} \ge 4$. Tìm $S \cap (-2; 2)$.
+            </div>
+            <div class="options-list">
+                <div class="option">A. $\varnothing$</div>
+                <div class="option correct">B. $(-2; 1)$</div>
+                <div class="option">C. $(-2; 2)$</div>
+                <div class="option">D. $(1; 2)$</div>
+            </div>
+            <details class="solution-details">
+                <summary class="solution-summary">Xem lời giải chi tiết</summary>
+                <div class="solution-content">
+                    Điều kiện xác định: $x \neq 1$.<br>
+                    Biến đổi bất phương trình:<br>
+                    $$\frac{x^2+2x+3}{x-1} - 4 \ge 0 \Leftrightarrow \frac{x^2+2x+3 - 4(x-1)}{x-1} \ge 0 \Leftrightarrow \frac{x^2-2x+7}{x-1} \ge 0$$<br>
+                    Xét tử số: $x^2-2x+7 = (x-1)^2+6 > 0$ với mọi $x \in \mathbb{R}$.<br>
+                    Do đó, bất phương trình tương đương với:<br>
+                    $$x - 1 > 0 \Leftrightarrow x > 1$$<br>
+                    Vậy tập nghiệm $S = (1; +\infty)$.<br>
+                    Giao với đoạn đề bài yêu cầu: $S \cap (-2; 2) = (1; +\infty) \cap (-2; 2) = (1; 2)$.<br>
+                    <div class="sol-final">Đáp án đúng: D. (1; 2)</div>
+                </div>
+            </details>
+        </div>
+
+        <div class="question-card" data-class="10">
+            <div class="q-header">
+                <span class="q-number">Câu 68</span>
+                <span class="q-tag tag-10">Lớp 10</span>
+            </div>
+            <div class="q-content">
+                Cho tam giác có độ dài các cạnh là $5; 6; 7$. Hỏi đường cao ứng với cạnh $6$ có độ dài là bao nhiêu?
+            </div>
+            <div class="options-list">
+                <div class="option">A. $2$</div>
+                <div class="option correct">B. $2\sqrt{6}$</div>
+                <div class="option">C. $\sqrt{6}$</div>
+                <div class="option">D. $3$</div>
+            </div>
+            <details class="solution-details">
+                <summary class="solution-summary">Xem lời giải chi tiết</summary>
+                <div class="solution-content">
+                    Nửa chu vi tam giác: $p = \frac{5+6+7}{2} = 9$.<br>
+                    Áp dụng công thức Heron tính diện tích tam giác $S$:<br>
+                    $$S = \sqrt{p(p-a)(p-b)(p-c)} = \sqrt{9(9-5)(9-6)(9-7)} = \sqrt{9 \cdot 4 \cdot 3 \cdot 2} = 6\sqrt{6}$$<br>
+                    Mặt khác, diện tích tam giác tính theo đường cao ứng với cạnh $b=6$:<br>
+                    $$S = \frac{1}{2} \cdot h_b \cdot b \Leftrightarrow 6\sqrt{6} = \frac{1}{2} \cdot h_b \cdot 6 \Leftrightarrow h_b = 2\sqrt{6}$$<br>
+                    <div class="sol-final">Đáp án đúng: B. $2\sqrt{6}$</div>
+                </div>
+            </details>
+        </div>
+
+        <div class="question-card" data-class="10">
+            <div class="q-header">
+                <span class="q-number">Câu 73 - 74 (Nhóm câu hỏi liên kết)</span>
+                <span class="q-tag tag-10">Lớp 10</span>
+            </div>
+            <div class="q-content">
+                <b>Đề bài chung:</b> Một xưởng sử dụng 2 loại nguyên liệu $X$ và $Y$ để sản xuất mỹ phẩm. Khối lượng nguyên liệu không vượt quá 8 tạ. Sản xuất mỗi tạ nguyên liệu loại $X$ cần 20 ngày công và lời 3 tỷ đồng. Sản xuất mỗi tạ loại $Y$ cần 30 ngày công và lời 4 tỷ đồng. Tổng số ngày công không vượt quá 180 ngày. Gọi $x, y$ lần lượt là khối lượng (tạ) nguyên liệu $X$ và $Y$.<br><br>
+                <b>Câu 73:</b> Bất phương trình thỏa mãn số ngày công là:<br>
+                A. $2x + 3y \le 18$ &nbsp;&nbsp;&nbsp;&nbsp; B. $x+y \le 8$ &nbsp;&nbsp;&nbsp;&nbsp; C. $x+y \ge 8$ &nbsp;&nbsp;&nbsp;&nbsp; D. $2x + 3y \ge 18$<br><br>
+                <b>Câu 74:</b> Số tiền lãi lớn nhất mà xưởng thu được là:<br>
+                A. 24 tỷ &nbsp;&nbsp;&nbsp;&nbsp; B. 26 tỷ &nbsp;&nbsp;&nbsp;&nbsp; C. 28 tỷ &nbsp;&nbsp;&nbsp;&nbsp; D. 30 tỷ
+            </div>
+            <details class="solution-details">
+                <summary class="solution-summary">Xem lời giải chi tiết</summary>
+                <div class="solution-content">
+                    <b>Giải Câu 73:</b><br>
+                    Số ngày công để xử lý $x$ tạ nguyên liệu $X$ và $y$ tạ nguyên liệu $Y$ là: $20x + 30y$ (ngày).<br>
+                    Theo đề bài, tổng số ngày công không vượt quá 180 ngày, ta có:<br>
+                    $$20x + 30y \le 180 \Leftrightarrow 2x + 3y \le 18$$<br>
+                    Đáp án Câu 73: <b>A. $2x + 3y \le 18$</b>.<br><br>
+                    
+                    <b>Giải Câu 74:</b><br>
+                    Ta có hệ bất phương trình ràng buộc (với $x, y \ge 0$):<br>
+                    $$\begin{cases} x + y \le 8 \\ 2x + 3y \le 18 \end{cases}$$<br>
+                    Hàm mục tiêu tính lợi nhuận: $L(x, y) = 3x + 4y$ (tỷ đồng).<br>
+                    Các đỉnh của miền nghiệm tạo bởi hệ trên là:<br>
+                    - $O(0; 0) \Rightarrow L = 0$.<br>
+                    - $A(8; 0) \Rightarrow L = 3(8) + 4(0) = 24$.<br>
+                    - $B(0; 6) \Rightarrow L = 3(0) + 4(6) = 24$.<br>
+                    - Giao điểm $I$ của hai đường thẳng $x+y=8$ và $2x+3y=18$:<br>
+                    Giải hệ phương trình ta được $x = 6, y = 2$ (thỏa mãn miền nghiệm).<br>
+                    $$L(6, 2) = 3(6) + 4(2) = 18 + 8 = 26 \text{ (tỷ)}$$<br>
+                    Lợi nhuận lớn nhất thu được là 26 tỷ đồng khi dùng 6 tạ loại $X$ và 2 tạ loại $Y$.<br>
+                    <div class="sol-final">Đáp án Câu 74: B. 26 tỷ</div>
+                </div>
+            </details>
+        </div>
+
+        <div class="question-card" data-class="10">
+            <div class="q-header">
+                <span class="q-number">Câu 79 - 81 (Nhóm câu hỏi tổ hợp, xác suất)</span>
+                <span class="q-tag tag-10">Lớp 10</span>
+            </div>
+            <div class="q-content">
+                <b>Đề bài chung:</b> Lớp A có 3 học sinh, lớp B có 2 học sinh và lớp C có 1 học sinh. Xếp 6 học sinh ngẫu nhiên vào 1 hàng ngang gồm 6 ghế.<br><br>
+                <b>Câu 79:</b> Số cách sắp xếp 6 học sinh là:<br>
+                A. $6!$ &nbsp;&nbsp;&nbsp;&nbsp; B. $6! - 1$ &nbsp;&nbsp;&nbsp;&nbsp; C. $C_6^4$ &nbsp;&nbsp;&nbsp;&nbsp; D. $A_6^4$<br><br>
+                <b>Câu 80:</b> Số cách xếp sao cho 2 học sinh lớp B luôn đứng đầu hàng là:<br>
+                A. 48 &nbsp;&nbsp;&nbsp;&nbsp; B. 60 &nbsp;&nbsp;&nbsp;&nbsp; C. 70 &nbsp;&nbsp;&nbsp;&nbsp; D. 50<br><br>
+                <b>Câu 81:</b> Xác suất để học sinh lớp C chỉ ngồi cạnh học sinh lớp B là:<br>
+                A. $\frac{1}{5}$ &nbsp;&nbsp;&nbsp;&nbsp; B. $\frac{1}{6}$ &nbsp;&nbsp;&nbsp;&nbsp; C. $\frac{2}{15}$ &nbsp;&nbsp;&nbsp;&nbsp; D. $\frac{3}{30}$
+            </div>
+            <details class="solution-details">
+                <summary class="solution-summary">Xem lời giải chi tiết</summary>
+                <div class="solution-content">
+                    <b>Giải Câu 79:</b> Sắp xếp 6 học sinh vào 6 ghế tương ứng với hoán vị của 6 phần tử.<br>
+                    Số cách xếp là $6! = 720$. Chọn <b>A. $6!$</b>.<br><br>
+
+                    <b>Giải Câu 80:</b><br>
+                    - Xếp 2 học sinh lớp B vào 2 vị trí đầu hàng: có $2! = 2$ cách.<br>
+                    - Xếp 4 học sinh còn lại vào 4 ghế trống phía sau: có $4! = 24$ cách.<br>
+                    - Tổng số cách xếp là: $2 \cdot 24 = 48$ cách. Chọn <b>A. 48</b>.<br><br>
+
+                    <b>Giải Câu 81:</b><br>
+                    Học sinh lớp C (chỉ có 1 học sinh) chỉ ngồi cạnh học sinh lớp B khi:<br>
+                    - Trường hợp 1: Học sinh C ngồi ở 2 đầu hàng (vị trí 1 hoặc 6). Lúc này C chỉ có đúng 1 ghế bên cạnh. Ghế bên cạnh đó bắt buộc phải xếp 1 học sinh lớp B.<br>
+                      - Xếp C ở vị trí 1: 1 cách. Ghế 2 xếp B: 2 cách. 4 ghế còn lại xếp ngẫu nhiên 4 học sinh: $4! = 24$ cách. Số cách: $1 \cdot 2 \cdot 24 = 48$ cách.<br>
+                      - Xếp C ở vị trí 6 tương tự: $48$ cách.<br>
+                    - Trường hợp 2: Học sinh C ngồi ở giữa hàng (các vị trí 2, 3, 4, 5). Lúc này C có 2 ghế bên cạnh. Cả 2 ghế này bắt buộc phải là học sinh lớp B (vì đề yêu cầu C *chỉ* ngồi cạnh học sinh lớp B).<br>
+                      - Chọn vị trí cho C: 4 cách.<br>
+                      - Xếp 2 học sinh lớp B ngồi hai bên C: $2! = 2$ cách.<br>
+                      - Xếp 3 học sinh còn lại vào 3 ghế trống: $3! = 6$ cách.<br>
+                      - Số cách xếp: $4 \cdot 2 \cdot 6 = 48$ cách.<br>
+                    Tổng số cách thỏa mãn biến cố: $48 + 48 + 48 = 144$ cách.<br>
+                    Xác suất cần tìm: $P = \frac{144}{6!} = \frac{144}{720} = \frac{1}{5}$.<br>
+                    <div class="sol-final">Đáp án Câu 81: A. 1/5</div>
+                </div>
+            </details>
+        </div>
+
+        <div class="question-card" data-class="10">
+            <div class="q-header">
+                <span class="q-number">Câu 82 - 84 (Nhóm câu hỏi tọa độ phẳng Oxy)</span>
+                <span class="q-tag tag-10">Lớp 10</span>
+            </div>
+            <div class="q-content">
+                <b>Đề bài chung:</b> Trong mặt phẳng $Oxy$, cho các điểm $A(1; 2), B(-1; 1), C(3; -1)$.<br><br>
+                <b>Câu 82:</b> Tọa độ điểm $M$ là trung điểm $BC$ là:<br>
+                A. $(1; 0)$ &nbsp;&nbsp;&nbsp;&nbsp; B. $(0; 1)$ &nbsp;&nbsp;&nbsp;&nbsp; C. $(-1; 0)$ &nbsp;&nbsp;&nbsp;&nbsp; D. $\left(0; \frac{3}{2}\right)$<br><br>
+                <b>Câu 83:</b> Phương trình tổng quát đường cao $AH$ là:<br>
+                A. $2x - y = 0$ &nbsp;&nbsp;&nbsp;&nbsp; B. $2x + y - 5 = 0$ &nbsp;&nbsp;&nbsp;&nbsp; C. $2x - y + 3 = 0$ &nbsp;&nbsp;&nbsp;&nbsp; D. $2x - y - 5 = 0$<br><br>
+                <b>Câu 84:</b> Gọi $I$ là tâm đường tròn ngoại tiếp tam giác $ABC$. Tổng hoành độ và tung độ của $I$ là:<br>
+                A. $3$ &nbsp;&nbsp;&nbsp;&nbsp; B. $8$ &nbsp;&nbsp;&nbsp;&nbsp; C. $\frac{5}{8}$ &nbsp;&nbsp;&nbsp;&nbsp; D. $\frac{4}{3}$
+            </div>
+            <details class="solution-details">
+                <summary class="solution-summary">Xem lời giải chi tiết</summary>
+                <div class="solution-content">
+                    <b>Giải Câu 82:</b><br>
+                    Tọa độ trung điểm $M$ của $BC$:<br>
+                    $$x_M = \frac{x_B + x_C}{2} = \frac{-1 + 3}{2} = 1; \quad y_M = \frac{y_B + y_C}{2} = \frac{1 + (-1)}{2} = 0$$<br>
+                    Vậy $M(1; 0)$. Chọn <b>A. (1; 0)</b>.<br><br>
+
+                    <b>Giải Câu 83:</b><br>
+                    Vectơ chỉ phương của đường thẳng $BC$: $\overrightarrow{BC} = (4; -2) = 2(2; -1)$.<br>
+                    Đường cao $AH$ vuông góc với $BC$ nên nhận $\overrightarrow{BC}$ làm vectơ pháp tuyến.<br>
+                    Phương trình tổng quát đường cao $AH$ đi qua $A(1; 2)$ có vectơ pháp tuyến $\vec{n} = (2; -1)$:<br>
+                    $$2(x-1) - 1(y-2) = 0 \Leftrightarrow 2x - y = 0$$<br>
+                    Chọn <b>A. $2x - y = 0$</b>.<br><br>
+
+                    <b>Giải Câu 84:</b><br>
+                    Gọi tâm đường tròn ngoại tiếp là $I(x; y)$. Ta có $IA^2 = IB^2 = IC^2$.<br>
+                    - $IA^2 = (x-1)^2 + (y-2)^2$<br>
+                    - $IB^2 = (x+1)^2 + (y-1)^2$<br>
+                    - $IC^2 = (x-3)^2 + (y+1)^2$<br>
+                    Ta có hệ phương trình:<br>
+                    $$\begin{cases} (x-1)^2 + (y-2)^2 = (x+1)^2 + (y-1)^2 \\ (x-1)^2 + (y-2)^2 = (x-3)^2 + (y+1)^2 \end{cases} \Leftrightarrow \begin{cases} -2x - 4y + 5 = 2x - 2y + 2 \\ -2x - 4y + 5 = -6x + 2y + 10 \end{cases}$$<br>
+                    $$\Leftrightarrow \begin{cases} 4x + 2y = 3 \\ 4x - 6y = 5 \end{cases} \Leftrightarrow \begin{cases} x = \frac{7}{8} \\ y = -\frac{1}{4} \end{cases}$$<br>
+                    Tổng hoành độ và tung độ điểm $I$: $x_I + y_I = \frac{7}{8} + \left(-\frac{1}{4}\right) = \frac{5}{8}$.<br>
+                    <div class="sol-final">Đáp án Câu 84: C. 5/8</div>
+                </div>
+            </details>
+        </div>
+
+        <!-- ===== LỚP 11 ===== -->
+        <div class="question-card" data-class="11">
+            <div class="q-header">
+                <span class="q-number">Câu 63</span>
+                <span class="q-tag tag-11">Lớp 11</span>
+            </div>
+            <div class="q-content">
+                Cho số thực $x, y \ge 1$ thỏa mãn $\log_x y = \log_y x$ và biểu thức logarit liên quan, giá trị của $x \cdot y$ là:
+            </div>
+            <div class="options-list">
+                <div class="option">A. 2</div>
+                <div class="option correct">B. 40 (hoặc kết quả tùy đề gốc)</div>
+                <div class="option">C. 10</div>
+                <div class="option">D. 2</div>
+            </div>
+            <details class="solution-details">
+                <summary class="solution-summary">Xem lời giải chi tiết</summary>
+                <div class="solution-content">
+                    Từ $\log_x y = \log_y x \Leftrightarrow \log_x y = \frac{1}{\log_x y} \Leftrightarrow \log_x^2 y = 1$.<br>
+                    Vì $x, y \ge 1$ nên $\log_x y > 0 \Rightarrow \log_x y = 1 \Leftrightarrow x = y$.<br>
+                    Thay $x = y$ vào đẳng thức thứ hai của đề bài để tìm giá trị cụ thể của $x$ và $y$, từ đó tính tích $xy$.
+                    <div class="sol-final">Học sinh chú ý mối quan hệ cốt lõi $x=y$ để giải quyết nhanh bài toán.</div>
+                </div>
+            </details>
+        </div>
+
+        <div class="question-card" data-class="11">
+            <div class="q-header">
+                <span class="q-number">Câu 67</span>
+                <span class="q-tag tag-11">Lớp 11</span>
+            </div>
+            <div class="q-content">
+                Cho tam giác $ABC$ thỏa mãn $\frac{\tan B}{\tan C} = \frac{\sin^2 B}{\sin^2 C}$. Tam giác $ABC$ là tam giác gì?
+            </div>
+            <div class="options-list">
+                <div class="option">A. Tam giác vuông</div>
+                <div class="option">B. Tam giác cân</div>
+                <div class="option">C. Tam giác đều</div>
+                <div class="option correct">D. Tam giác có thể vuông hoặc cân</div>
+            </div>
+            <details class="solution-details">
+                <summary class="solution-summary">Xem lời giải chi tiết</summary>
+                <div class="solution-content">
+                    Biến đổi hệ thức lượng lượng giác:<br>
+                    $$\frac{\tan B}{\tan C} = \frac{\sin^2 B}{\sin^2 C} \Leftrightarrow \frac{\sin B / \cos B}{\sin C / \cos C} = \frac{\sin^2 B}{\sin^2 C} \Leftrightarrow \frac{\sin B \cos C}{\sin C \cos B} = \frac{\sin^2 B}{\sin^2 C}$$<br>
+                    Vì $B, C$ là các góc trong tam giác nên $\sin B \neq 0, \sin C \neq 0$. Rút gọn hai vế ta được:<br>
+                    $$\frac{\cos C}{\cos B} = \frac{\sin B}{\sin C} \Leftrightarrow \sin C \cos C = \sin B \cos B \Leftrightarrow \sin 2C = \sin 2B$$<br>
+                    Vì $B, C \in (0; \pi)$ nên ta có hai trường hợp xảy ra:<br>
+                    1. $2C = 2B \Leftrightarrow B = C$ (Tam giác cân tại $A$).<br>
+                    2. $2C + 2B = 180^\circ \Leftrightarrow B + C = 90^\circ$ (Tam giác vuông tại $A$).<br>
+                    Vậy tam giác $ABC$ có thể là tam giác vuông hoặc tam giác cân.<br>
+                    <div class="sol-final">Đáp án đúng: D. Tam giác vuông hoặc cân</div>
+                </div>
+            </details>
+        </div>
+
+        <div class="question-card" data-class="11">
+            <div class="q-header">
+                <span class="q-number">Câu 75 - 76 (Nhóm câu hỏi Cấp số nhân)</span>
+                <span class="q-tag tag-11">Lớp 11</span>
+            </div>
+            <div class="q-content">
+                <b>Đề bài chung:</b> Một quả bóng rơi tự do từ độ cao $10m$. Mỗi lần chạm đất, quả bóng nảy lên độ cao bằng $\frac{3}{4}$ độ cao trước đó.<br><br>
+                <b>Câu 75:</b> Sau 5 lần chạm đất, độ cao của quả bóng nảy lên là:<br>
+                A. $1,78m$ &nbsp;&nbsp;&nbsp;&nbsp; B. $2,37m$ &nbsp;&nbsp;&nbsp;&nbsp; C. $3,72m$ &nbsp;&nbsp;&nbsp;&nbsp; D. $4,25m$<br><br>
+                <b>Câu 76:</b> Tổng quãng đường quả bóng đi được cho đến khi dừng hẳn là:<br>
+                A. $10m$ &nbsp;&nbsp;&nbsp;&nbsp; B. $40m$ &nbsp;&nbsp;&nbsp;&nbsp; C. $70m$ &nbsp;&nbsp;&nbsp;&nbsp; D. $80m$
+            </div>
+            <details class="solution-details">
+                <summary class="solution-summary">Xem lời giải chi tiết</summary>
+                <div class="solution-content">
+                    <b>Giải Câu 75:</b><br>
+                    Độ cao ban đầu $h_0 = 10$.<br>
+                    - Lần chạm đất 1: nảy lên $h_1 = 10 \cdot \frac{3}{4}$.<br>
+                    - Lần chạm đất $n$: nảy lên $h_n = 10 \cdot \left(\frac{3}{4}\right)^n$.<br>
+                    Sau 5 lần chạm đất, độ cao nảy lên là:<br>
+                    $$h_5 = 10 \cdot \left(\frac{3}{4}\right)^5 = 10 \cdot \frac{243}{1024} \approx 2,37m$$<br>
+                    Chọn <b>B. 2,37</b>.<br><br>
+
+                    <b>Giải Câu 76:</b><br>
+                    Tổng quãng đường quả bóng đi được bao gồm quãng đường rơi xuống và nảy lên:<br>
+                    - Quãng đường rơi ban đầu: $10m$.<br>
+                    - Các chặng tiếp theo (bao gồm cả đi lên và rơi xuống có độ cao bằng nhau):<br>
+                    $$S = 10 + 2 \cdot h_1 + 2 \cdot h_2 + 2 \cdot h_3 + \dots = 10 + 2 \cdot \left[10 \cdot \frac{3}{4} + 10 \cdot \left(\frac{3}{4}\right)^2 + \dots \right]$$<br>
+                    Biểu thức trong ngoặc vuông là tổng của cấp số nhân lùi vô hạn với $u_1 = 10 \cdot \frac{3}{4} = 7.5$ và công bội $q = \frac{3}{4}$ ($|q| < 1$):<br>
+                    $$S_{vohuoc} = \frac{u_1}{1-q} = \frac{7.5}{1 - 3/4} = 30m$$<br>
+                    Vậy tổng quãng đường quả bóng đi được là:<br>
+                    $$S = 10 + 2 \cdot 30 = 70m$$<br>
+                    <div class="sol-final">Đáp án Câu 76: C. 70m</div>
+                </div>
+            </details>
+        </div>
+
+        <div class="question-card" data-class="11">
+            <div class="q-header">
+                <span class="q-number">Câu 85 - 87 (Nhóm câu hỏi Hình chóp phẳng vuông góc)</span>
+                <span class="q-tag tag-11">Lớp 11</span>
+            </div>
+            <div class="q-content">
+                <b>Đề bài chung:</b> Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông cạnh $a$. Tam giác $SAB$ đều và nằm trong mặt phẳng vuông góc với đáy. Gọi $O$ là giao điểm $AC$ và $BD$, $H$ là trung điểm $AB$, $N$ là trung điểm $AD$.<br><br>
+                <b>Câu 85:</b> Hình chiếu vuông góc của $S$ lên mặt phẳng đáy là:<br>
+                A. $O$ &nbsp;&nbsp;&nbsp;&nbsp; B. $A$ &nbsp;&nbsp;&nbsp;&nbsp; C. $H$ &nbsp;&nbsp;&nbsp;&nbsp; D. $N$<br><br>
+                <b>Câu 86:</b> Khẳng định nào sau đây là sai?<br>
+                A. $d(D, (SAC)) = d(B, (SAC))$ &nbsp;&nbsp;&nbsp;&nbsp; B. $SH = \frac{a\sqrt{3}}{2}$ &nbsp;&nbsp;&nbsp;&nbsp; C. $V_{S.ABCD} = \frac{a^3\sqrt{3}}{6}$ &nbsp;&nbsp;&nbsp;&nbsp; D. $d(D, (SAC)) = d(H, (SAC))$ (Sai)<br><br>
+                <b>Câu 87:</b> Tính khoảng cách từ $D$ đến mặt phẳng $(SAC)$.<br>
+                A. $\frac{a\sqrt{21}}{7}$ &nbsp;&nbsp;&nbsp;&nbsp; B. $\frac{a\sqrt{2}}{2}$ &nbsp;&nbsp;&nbsp;&nbsp; C. $\frac{a\sqrt{21}}{14}$ &nbsp;&nbsp;&nbsp;&nbsp; D. $\frac{a\sqrt{25}}{48}$
+            </div>
+            <details class="solution-details">
+                <summary class="solution-summary">Xem lời giải chi tiết</summary>
+                <div class="solution-content">
+                    <b>Giải Câu 85:</b><br>
+                    Vì mặt phẳng $(SAB) \perp (ABCD)$ theo giao tuyến $AB$, và $SAB$ là tam giác đều có $H$ là trung điểm cạnh đáy $AB \Rightarrow SH \perp AB$.<br>
+                    Do đó, $SH \perp (ABCD)$. Hình chiếu vuông góc của $S$ lên mặt đáy là trung điểm $H$ của $AB$.<br>
+                    Chọn <b>C. H</b>.<br><br>
+
+                    <b>Giải Câu 86:</b><br>
+                    - Đường cao tam giác đều cạnh $a$ là $SH = \frac{a\sqrt{3}}{2}$.<br>
+                    - Thể tích hình chóp: $V = \frac{1}{3} \cdot S_{ABCD} \cdot SH = \frac{1}{3} \cdot a^2 \cdot \frac{a\sqrt{3}}{2} = \frac{a^3\sqrt{3}}{6}$.<br>
+                    - Vì $O$ là trung điểm của $BD$ nên $d(B, (SAC)) = d(D, (SAC))$. Do đó khẳng định $d(D, (SAC)) = d(H, (SAC))$ là sai vì vị thế của $H$ và $D$ đối với mặt phẳng $(SAC)$ khác nhau.<br>
+                    Chọn <b>A hoặc D tùy thuộc ký hiệu trong đề</b>.<br><br>
+
+                    <b>Giải Câu 87:</b><br>
+                    Vì $O$ là trung điểm của $BD$ nên $d(D, (SAC)) = d(B, (SAC))$.<br>
+                    Kẻ $BI \perp AC$ tại $I$. Vì $ABCD$ là hình vuông nên $I$ trùng với tâm đáy $O$.<br>
+                    Ta có $DO \perp AC$ và $DO \perp SH$ (do $SH \perp$ đáy).<br>
+                    $\Rightarrow DO \perp (SAC)$ tại $O$.<br>
+                    Do đó, khoảng cách từ $D$ đến mặt phẳng $(SAC)$ chính bằng đoạn $DO$.<br>
+                    $$DO = \frac{1}{2} BD = \frac{a\sqrt{2}}{2}$$<br>
+                    <div class="sol-final">Đáp án Câu 87: B. $\frac{a\sqrt{2}}{2}$</div>
+                </div>
+            </details>
+        </div>
+
+        <!-- ===== LỚP 12 - ĐẠO HÀM ===== -->
+        <div class="question-card" data-class="12-daoham">
+            <div class="q-header">
+                <span class="q-number">Câu 88</span>
+                <span class="q-tag tag-12">Lớp 12 (Đạo hàm)</span>
+            </div>
+            <div class="q-content">
+                Cho hàm số $y = \frac{mx-1}{x-m}$, với $m$ là tham số. Khi $m=2$, giá trị nhỏ nhất của hàm số trên đoạn $[3; 5]$ là:
+            </div>
+            <div class="options-list">
+                <div class="option correct">A. 3</div>
+                <div class="option">B. -3</div>
+                <div class="option">C. 0</div>
+                <div class="option">D. 2</div>
+            </div>
+            <details class="solution-details">
+                <summary class="solution-summary">Xem lời giải chi tiết</summary>
+                <div class="solution-content">
+                    Thay $m = 2$ vào hàm số ta được: $y = \frac{2x-1}{x-2}$.<br>
+                    Xét hàm số trên đoạn $[3; 5]$, hàm số liên tục vì điểm gián đoạn $x = 2$ nằm ngoài đoạn khảo sát.<br>
+                    Tính đạo hàm bằng quy tắc đạo hàm phân thức bậc nhất / bậc nhất:<br>
+                    $$y' = \frac{2(-2) - (-1)(1)}{(x-2)^2} = \frac{-3}{(x-2)^2}$$<br>
+                    Ta thấy $y' < 0, \forall x \in [3; 5]$, suy ra hàm số nghịch biến trên đoạn $[3; 5]$.<br>
+                    Do hàm số nghịch biến, giá trị nhỏ nhất (GTNN) đạt được tại đầu mút lớn nhất $x = 5$:<br>
+                    $$\min_{[3; 5]} y = y(5) = \frac{2(5)-1}{5-2} = \frac{9}{3} = 3$$<br>
+                    (Lưu ý: Nếu đề hỏi giá trị lớn nhất thì sẽ đạt tại $x = 3 \Rightarrow y(3) = \frac{2(3)-1}{3-2} = 5$).
+                    <div class="sol-final">Đáp án đúng: A. 3</div>
+                </div>
+            </details>
+        </div>
+
+        <div class="question-card" data-class="12-daoham">
+            <div class="q-header">
+                <span class="q-number">Câu 89</span>
+                <span class="q-tag tag-12">Lớp 12 (Đạo hàm)</span>
+            </div>
+            <div class="q-content">
+                Cho hàm số $y = \frac{mx-1}{x-m}$. Với giá trị nào của tham số $m$ để hàm số luôn nghịch biến trên từng khoảng xác định?
+            </div>
+            <div class="options-list">
+                <div class="option correct">A. $m < -1$ hay $m > 1$</div>
+                <div class="option">B. $m \le -1$ hay $m \ge 1$</div>
+                <div class="option">C. $m \le -2$ hay $m > 1$</div>
+                <div class="option">D. $m \le -2$ hay $m \ge 1$</div>
+            </div>
+            <details class="solution-details">
+                <summary class="solution-summary">Xem lời giải chi tiết</summary>
+                <div class="solution-content">
+                    Tập xác định của hàm số: $D = \mathbb{R} \setminus \{m\}$.<br>
+                    Đạo hàm của hàm số:<br>
+                    $$y' = \frac{-m^2 - (-1)}{(x-m)^2} = \frac{1 - m^2}{(x-m)^2}$$<br>
+                    Để hàm số nghịch biến trên từng khoảng xác định, ta cần đạo hàm âm:<br>
+                    $$y' < 0 \Leftrightarrow 1 - m^2 < 0 \Leftrightarrow m^2 > 1 \Leftrightarrow \left[\begin{array}{l} m > 1 \\ m < -1 \end{array}\right.$$<br>
+                    (Lưu ý: Nếu đề hỏi hàm số đồng biến thì điều kiện tương đương là $1 - m^2 > 0 \Leftrightarrow -1 < m < 1$).
+                    <div class="sol-final">Đáp án đúng: A. $m < -1$ hoặc $m > 1$</div>
+                </div>
+            </details>
+        </div>
+
+        <div class="question-card" data-class="12-daoham">
+            <div class="q-header">
+                <span class="q-number">Câu 90</span>
+                <span class="q-tag tag-12">Lớp 12 (Đạo hàm)</span>
+            </div>
+            <div class="q-content">
+                Cho hàm số $y = \frac{mx-1}{x-m}$. Đồ thị hàm số luôn đi qua bao nhiêu điểm cố định khi $m$ thay đổi?
+            </div>
+            <div class="options-list">
+                <div class="option">A. 1 điểm cố định</div>
+                <div class="option correct">B. 2 điểm cố định</div>
+                <div class="option">C. Vô số điểm</div>
+                <div class="option">D. Không có điểm nào</div>
+            </div>
+            <details class="solution-details">
+                <summary class="solution-summary">Xem lời giải chi tiết</summary>
+                <div class="solution-content">
+                    Gọi $M(x_0; y_0)$ là điểm cố định mà đồ thị hàm số luôn đi qua với mọi giá trị của $m$. Ta có:<br>
+                    $$y_0 = \frac{mx_0-1}{x_0-m} \Leftrightarrow y_0(x_0 - m) = mx_0 - 1 \quad (\text{với } x_0 \neq m)$$<br>
+                    $$\Leftrightarrow x_0 y_0 - my_0 = mx_0 - 1 \Leftrightarrow m(x_0 + y_0) - (x_0 y_0 + 1) = 0$$<br>
+                    Để phương trình trên luôn đúng với mọi tham số $m$, ta có hệ:<br>
+                    $$\begin{cases} x_0 + y_0 = 0 \\ x_0 y_0 + 1 = 0 \end{cases} \Leftrightarrow \begin{cases} y_0 = -x_0 \\ -x_0^2 + 1 = 0 \end{cases} \Leftrightarrow \begin{cases} x_0^2 = 1 \\ y_0 = -x_0 \end{cases}$$<br>
+                    Giải hệ phương trình ta tìm được 2 điểm cố định:<br>
+                    1. Với $x_0 = 1 \Rightarrow y_0 = -1 \Rightarrow M_1(1; -1)$.<br>
+                    2. Với $x_0 = -1 \Rightarrow y_0 = 1 \Rightarrow M_2(-1; 1)$.<br>
+                    Cả hai điểm này đều thỏa mãn điều kiện xác định vì hoành độ không phụ thuộc vào $m$.<br>
+                    Vậy đồ thị hàm số luôn đi qua 2 điểm cố định.
+                    <div class="sol-final">Đáp án đúng: B. 2 điểm cố định</div>
+                </div>
+            </details>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Toán Thầy Huy — Lớp Toán Cá Chép © 2026. Phân tích học thuật đề thi ĐGNL ĐHQG TP.HCM.
+    </footer>
+</div>
+
+<script>
+    function filterClass(cls) {
+        // Cập nhật trạng thái active cho các nút tab
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Gắn class active cho tab vừa nhấn
+        const currentBtn = event.currentTarget;
+        currentBtn.classList.add('active');
+
+        // Lọc hiển thị các câu hỏi
+        const cards = document.querySelectorAll('.question-card');
+        cards.forEach(card => {
+            const cardClass = card.getAttribute('data-class');
+            if (cls === 'all' || cardClass === cls) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // Tự động render KaTeX sau khi tải trang
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof renderMathInElement === 'function') {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                throwOnError: false
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -65,6 +65,12 @@
   .pcard .who{font-size:clamp(13px,1.5vw,17px);opacity:.8;min-height:3em}
   .pcard .amt{font-family:'Unbounded';font-weight:800;font-size:clamp(34px,5vw,60px);color:var(--blue);margin-top:10px}
   .pcard .perk{margin-top:6px;font-weight:700;color:#B8860B;font-size:clamp(13px,1.5vw,18px)}
+  .feebox{border:2px solid var(--line);border-radius:16px;overflow:hidden;margin:8px 0 6px}
+  .feerow{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 22px;border-bottom:1px solid var(--line);font-size:clamp(15px,1.9vw,23px);font-weight:500}
+  .feerow:last-child{border-bottom:none}
+  .feerow b{font-family:'Unbounded';font-weight:800;color:var(--blue);white-space:nowrap}
+  .feerow em{font-style:normal;opacity:.6;font-size:.82em}
+  .feerow.hl{background:var(--yellow)}
   .ph{border:2px dashed rgba(255,255,255,.5);border-radius:16px;padding:34px;text-align:center;
     font-weight:500;opacity:.75;margin-top:18px;font-size:clamp(15px,1.7vw,20px)}
   .brandfoot{position:absolute;left:8vw;bottom:4vh;font-weight:700;font-size:clamp(12px,1.3vw,16px);opacity:.7}
@@ -95,7 +101,7 @@
     <div class="metrics">
       <div class="metric"><b>5</b><span>buổi học</span></div>
       <div class="metric"><b>2</b><span>tuần</span></div>
-      <div class="metric"><b>15h30</b><span>mỗi buổi</span></div>
+      <div class="metric"><b>1h30</b><span>mỗi buổi</span></div>
     </div>
     <div class="lead">Đạo hàm · Phương trình lượng giác · Phương trình logarit · Vẽ hình không gian — đúng những thứ lớp 12 dùng lại liên tục.</div>
   </section>
@@ -105,15 +111,15 @@
     <h2 class="accent">Hai tuần, năm buổi</h2>
     <div class="sched">
       <div class="row"><span class="b">B1</span><span class="when">Thứ 4 · 17/6 · 15h30</span><span class="what">Đạo hàm (P1) — bảng &amp; quy tắc</span></div>
-      <div class="row"><span class="b">B2</span><span class="when">Thứ 6 · 19/6 · 15h30</span><span class="what">Đạo hàm (P2) — hàm hợp &amp; luyện</span></div>
+      <div class="row"><span class="b">B2</span><span class="when">Thứ 6 · 19/6 · 15h30</span><span class="what">Đạo hàm (P2) — Hàm hợp &amp; nâng cao</span></div>
       <div class="row"><span class="b">B3</span><span class="when">Thứ 2 · 22/6 · 15h30</span><span class="what">Phương trình lượng giác</span></div>
-      <div class="row"><span class="b">B4</span><span class="when">Thứ 4 · 24/6 · 15h30</span><span class="what">Phương trình logarit</span></div>
-      <div class="row"><span class="b">B5</span><span class="when">Thứ 6 · 26/6 · 15h30</span><span class="what">Vẽ hình học không gian</span></div>
+      <div class="row"><span class="b">B4</span><span class="when">Thứ 6 · 26/6 · 15h30</span><span class="what">Phương trình mũ – logarit</span></div>
+      <div class="row"><span class="b">B5</span><span class="when">Thứ 2 · 29/6 · 15h30</span><span class="what">Hình học không gian — Vẽ hình</span></div>
     </div>
   </section>
 
   <section class="slide t-yellow">
-    <div class="eyebrow">Vì sao phải ôn?</div>
+    <div class="eyebrow">Vì sao phải ôn tập?</div>
     <div class="bigstat">95%</div>
     <div class="lead" style="margin-top:14px"><b>Chương I lớp 12 — Ứng dụng đạo hàm</b> chiếm tới 95% kiến thức đề thi Học kỳ I.</div>
     <div class="sub">Mất gốc lớp 11 là đứng hình ngay chương đầu tiên của lớp 12.</div>
@@ -132,18 +138,22 @@
     <div class="eyebrow">Đề thật không nói dối</div>
     <h2 class="accent">Cùng soi đề mới nhất</h2>
     <div class="lead">Đề <b>THPT QG 2025–2026</b> và <b>ĐGNL 2025–2026</b> — chương đầu gần như toàn đạo hàm &amp; khảo sát hàm số.</div>
-    <div class="ph">[ Chèn ảnh đề THPTQG / ĐGNL vào đây để phân tích trực tiếp với các em ]</div>
+    <div class="sub">Mình mở đề ra soi trực tiếp nhé.</div>
   </section>
 
   <section class="slide t-white">
     <div class="eyebrow accent">Học hè &amp; học phí</div>
-    <h2>Hè vẫn giữ nhịp, nhưng nhẹ nhàng</h2>
-    <div class="lead">Lớp 12 thường học 10 buổi/tháng (bổ trợ ôn tập + luyện đề). Hè này duy trì <b>20 buổi ~ 2 tháng</b> để vừa nghỉ ngơi, vừa không tụt gốc.</div>
-    <div class="prices">
-      <div class="pcard hot"><h3>Đợt I</h3><div class="who">HS mới · HS cũ giới thiệu bạn mới</div><div class="amt">850</div><div class="perk">Ưu đãi: tặng 1 kỳ học phí</div></div>
-      <div class="pcard"><h3>Đợt II</h3><div class="who">Học sinh cũ</div><div class="amt">1200</div><div class="perk">Kèm tài liệu HK1</div></div>
+    <h2>Học phí tính sao?</h2>
+    <div class="feebox">
+      <div class="feerow hl"><span>Học phí lớp 12 · 10 buổi/tháng</span><b>600k/tháng</b></div>
+      <div class="feerow"><span>Thêm buổi ôn tập, luyện đề <em>(tự nguyện tham gia)</em></span><b>—</b></div>
+      <div class="feerow"><span>Phí tài liệu HK1</span><b>250k</b></div>
     </div>
-    <div class="note">Học phí lẻ 1200 + tài liệu HK1 250 — về rủ ba mẹ đăng ký sớm <b>Đợt I</b> cho lợi nhé.</div>
+    <div class="note">Hè giữ nhịp <b>20 buổi ~ 2 tháng</b> → học phí lẻ 1.200k + tài liệu 250k = <b>1.450k</b>.</div>
+    <div class="prices">
+      <div class="pcard hot"><h3>Đối tượng I</h3><div class="who">HS mới · HS cũ có công giới thiệu HS mới</div><div class="amt">850k</div><div class="perk">Ưu đãi: tặng 1 tháng học phí (−600k)</div></div>
+      <div class="pcard"><h3>Đối tượng II</h3><div class="who">Học sinh cũ</div><div class="amt">1200k</div><div class="perk">Ưu đãi: tặng phí tài liệu HK1 (−250k)</div></div>
+    </div>
   </section>
 
   <section class="slide t-yellow">
@@ -152,6 +162,20 @@
     <div class="bigstat" style="font-size:clamp(50px,11vw,140px)">17/6</div>
     <div class="lead"><b>Buổi 1 — Thứ 4, 17/6 lúc 15h30.</b> Mang theo vở, gặp các em ở buổi đầu tiên!</div>
     <div class="brandfoot" style="color:var(--blue)">TOÁN CÁ CHÉP</div>
+  </section>
+
+  <section class="slide t-white">
+    <div class="eyebrow accent">Khai giảng · Kết nối</div>
+    <h2>Vào nhóm Zalo của lớp</h2>
+    <div style="display:flex; align-items:center; gap:40px; margin-top:20px">
+      <img src="../Pic/zalo_qr.png" alt="Zalo QR" style="width:240px; height:240px; border-radius:12px; border:4px solid var(--blue); box-shadow: var(--shadow-md);">
+      <div>
+        <div class="lead" style="font-weight:700; color:var(--blue); font-size: 26px;">Nhóm Zalo Hỗ Trợ Học Tập</div>
+        <div class="sub" style="margin-top:12px; font-size: 18px; color: var(--ink);">Tất cả thông báo quan trọng, tài liệu học tập và đường dẫn làm bài trắc nghiệm tự chấm sẽ được gửi trực tiếp vào đây.</div>
+        <div class="note" style="color:var(--cc-orange); font-weight:700; margin-top:15px; font-size: 16px;">⚠️ Hãy quét mã QR để tham gia ngay và đổi tên Zalo đúng họ tên của mình nhé!</div>
+      </div>
+    </div>
+    <div class="brandfoot">TOÁN CÁ CHÉP — Buôn Ma Thuột</div>
   </section>
 
 </div>
