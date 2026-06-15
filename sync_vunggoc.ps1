@@ -221,17 +221,26 @@ foreach ($row in $csvData) {
             $optB = ""
             $optC = ""
             $optD = ""
+            # 2-step safe parser
+            $qText = ""
+            $optA = ""
+            $optB = ""
+            $optC = ""
+            $optD = ""
             $qSol = ""
 
-            # Extract options and solution using safe regex
-            if ($qBody -match '(?ms)(.*?)\r?\n\s*A\.\s*(.*?)\r?\n\s*B\.\s*(.*?)\r?\n\s*C\.\s*(.*?)\r?\n\s*D\.\s*(.*?)(?:\r?\n\s*L[^\n]+i\s+gi[^\n]+i:\s*(.*))?$') {
+            $qBodyWithoutSol = $qBody.Trim()
+            if ($qBody -match '(?ms)(.*?)\r?\n\s*L[^\n]+i\s+gi[^\n]+i:\s*(.*)') {
+                $qBodyWithoutSol = $Matches[1].Trim()
+                $qSol = $Matches[2].Trim()
+            }
+
+            if ($qBodyWithoutSol -match '(?ms)(.*?)\r?\n\s*A\.\s*(.*?)\r?\n\s*B\.\s*(.*?)\r?\n\s*C\.\s*(.*?)\r?\n\s*D\.\s*(.*)') {
                 $qText = $Matches[1].Trim()
                 $optA = $Matches[2].Trim()
                 $optB = $Matches[3].Trim()
                 $optC = $Matches[4].Trim()
                 $optD = $Matches[5].Trim()
-                $qSol = ""
-                if ($Matches[6]) { $qSol = $Matches[6].Trim() }
             } else {
                 Write-Host "  ⚠️ Loi dinh dang cau hoi so $qIndex, vui long kiem tra cu phap A. B. C. D." -ForegroundColor Red
                 continue
