@@ -186,7 +186,7 @@ foreach ($row in $csvData) {
         $qCount = 0
 
         # Matches "## CAU X | level: Y | dap an: Z" and the block content until next "## CAU"
-        $qBlocks = [regex]::Matches($mdContent, '(?ms)^##\s+C[^\s]+\s+(\d+)\s*\|\s*level:\s*(\w+)\s*\|\s*[^|]+:\s*([A-D])(.*?)(?=(?:^##\s+C[^\s]+|\Z))')
+        $qBlocks = [regex]::Matches($mdContent, '(?ms)^##\s+C[^\s]+\s+(\d+)\s*\|\s*level:\s*(\w+)\s*\|\s*[^|\r\n]+:\s*([A-D])(.*?)(?=(?:^##\s+C[^\s]+|\Z))')
         
         # Slide 0: Cover Slide
         $coverHtml = @"
@@ -237,6 +237,7 @@ foreach ($row in $csvData) {
 
             if ($qBodyWithoutSol -match '(?ms)(.*?)\r?\n\s*A\.\s*(.*?)\r?\n\s*B\.\s*(.*?)\r?\n\s*C\.\s*(.*?)\r?\n\s*D\.\s*(.*)') {
                 $qText = $Matches[1].Trim()
+                if ($qText -match '^(?:D|d)[^\n]+:\s*(.*)') { $qText = $Matches[1] }
                 $optA = $Matches[2].Trim()
                 $optB = $Matches[3].Trim()
                 $optC = $Matches[4].Trim()
