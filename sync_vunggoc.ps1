@@ -205,7 +205,7 @@ foreach ($row in $csvData) {
             <div class="cover-title">$($row.Ten_Buoi)<span class="cover-subject">$($row.Chu_De)</span></div>
             <div class="cover-subtitle">Nh&#7899; h&#7885;c thu&#7897;c quy t&#7855;c tr&#432;&#7899;c khi l&#224;m b&#224;i nh&#233;</div>
             <div class="cover-badges">
-                <div class="cover-badge">&#x1F4C5; Ng&#224;y h&#7883;c: $ngayHocFormatted</div>
+                <div class="cover-badge">&#x1F4C5; Ng&#224;y h&#7885;c: $ngayHocFormatted</div>
                 <div class="cover-badge">&#x23F0; M&#7903; l&#250;c: $($row.Gio_Mo)</div>
             </div>
         </div>
