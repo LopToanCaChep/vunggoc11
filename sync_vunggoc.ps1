@@ -195,7 +195,7 @@ foreach ($row in $csvData) {
         <div>
             <div class="cover-eyebrow">KH&#211;A H&#7884;C V&#7918;NG G&#7888;C 11</div>
             <div class="cover-title">$($row.Ten_Buoi)<span class="cover-subject">$($row.Chu_De)</span></div>
-            <div class="cover-subtitle">Chu&#7845;n b&#7883; l&#253; thuy&#7811;t tr&#432;&#7899;c &#7903; nh&#224;. L&#234;n l&#7899;p luy&#7879;n tr&#7855;c nghi&#7879;m t&#7921; ch&#7845;m c&#249;ng th&#7847;y Huy nh&#233;!</div>
+            <div class="cover-subtitle">Chu&#7845;n b&#7883; l&#253; thuy&#7871;t tr&#432;&#7899;c &#7903; nh&#224;. L&#234;n l&#7899;p luy&#7879;n tr&#7855;c nghi&#7879;m t&#7921; ch&#7845;m c&#249;ng th&#7847;y Huy nh&#233;!</div>
             <div class="cover-badges">
                 <div class="cover-badge">&#x1F4C5; Ng&#224;y h&#7883;c: $(if ($row.Ngay_Hoc) { $row.Ngay_Hoc } else { "Ch&#432;a x&#7871;p l&#7883;ch" })</div>
                 <div class="cover-badge">&#x23F0; M&#7903; l&#250;c: $($row.Gio_Mo)</div>
@@ -233,6 +233,10 @@ foreach ($row in $csvData) {
             if ($qBody -match '(?ms)(.*?)\r?\n\s*L[^\n]+i\s+gi[^\n]+i:\s*(.*)') {
                 $qBodyWithoutSol = $Matches[1].Trim()
                 $qSol = $Matches[2].Trim()
+                # Loai bo cac tieu de dang bai bi gop vao loi giai
+                if ($qSol -match '(?m)^###') {
+                    $qSol = ($qSol -split '(?m)^###')[0].Trim()
+                }
             }
 
             if ($qBodyWithoutSol -match '(?ms)(.*?)\r?\n\s*A\.\s*(.*?)\r?\n\s*B\.\s*(.*?)\r?\n\s*C\.\s*(.*?)\r?\n\s*D\.\s*(.*)') {
