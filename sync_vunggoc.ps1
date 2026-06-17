@@ -1,4 +1,4 @@
-﻿$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Stop"
 
 # ===========================================================
 # VUNG GOC 11 HUB - SYNC & PARSER SCRIPT (SAFE ENCODING)
@@ -237,11 +237,11 @@ foreach ($row in $csvData) {
 
             if ($qBodyWithoutSol -match '(?ms)(.*?)\r?\n\s*A\.\s*(.*?)\r?\n\s*B\.\s*(.*?)\r?\n\s*C\.\s*(.*?)\r?\n\s*D\.\s*(.*)') {
                 $qText = $Matches[1].Trim()
-                if ($qText -match '^(?:D|d)[^\n]+:\s*(.*)') { $qText = $Matches[1] }
                 $optA = $Matches[2].Trim()
                 $optB = $Matches[3].Trim()
                 $optC = $Matches[4].Trim()
                 $optD = $Matches[5].Trim()
+                if ($qText -match '^(?:\u0110|\u0111|[Dd])[^:\n]+:\s*(.*)') { $qText = $Matches[1].Trim() }
             } else {
                 Write-Host "  âš ï¸ Loi dinh dang cau hoi so $qIndex, vui long kiem tra cu phap A. B. C. D." -ForegroundColor Red
                 continue
