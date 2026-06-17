@@ -319,6 +319,6 @@ $newIndexContent = $indexContent -replace $pattern, $replacement
 Write-Host "Da cap nhat mang BUOI trong index.html!" -ForegroundColor Green
 
 # ============== PHASE 2: GITHUB PUSH (sync_lib) ==============
-Invoke-GitPush -CommitMessage "Auto-sync Vung Goc 11 $(Get-Date -Format 'yyyy-MM-dd HH:mm')" -RemoteHint "git remote add origin https://github.com/loptoancachep/vunggoc-11.git"
+Invoke-GitPush -CommitMessage "Auto-sync Vung Goc 11 $(Get-Date -Format 'yyyy-MM-dd HH:mm')" -RemoteHint "git remote add origin https://github.com/LopToanCaChep/vunggoc11.git"
 
 Write-Host "Hoan thanh dong bo Vung Goc 11!" -ForegroundColor Green
