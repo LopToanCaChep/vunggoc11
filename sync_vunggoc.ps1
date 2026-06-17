@@ -193,16 +193,16 @@ foreach ($row in $csvData) {
 <div class="slide active" id="slide-0">
     <div class="question-card cover-card">
         <div>
-            <div class="cover-eyebrow">KHÓA HỌC VỮNG GỐC 11</div>
+            <div class="cover-eyebrow">KH&#211;A H&#7884;C V&#7918;NG G&#7888;C 11</div>
             <div class="cover-title">$($row.Ten_Buoi)<span class="cover-subject">$($row.Chu_De)</span></div>
-            <div class="cover-subtitle">Chuẩn bị lý thuyết trước ở nhà. Lên lớp luyện trắc nghiệm tự chấm cùng thầy Huy nhé!</div>
+            <div class="cover-subtitle">Chu&#7845;n b&#7883; l&#253; thuy&#7811;t tr&#432;&#7899;c &#7903; nh&#224;. L&#234;n l&#7899;p luy&#7879;n tr&#7855;c nghi&#7879;m t&#7921; ch&#7845;m c&#249;ng th&#7847;y Huy nh&#233;!</div>
             <div class="cover-badges">
-                <div class="cover-badge">&#x1F4C5; Ngày học: $(if ($row.Ngay_Hoc) { $row.Ngay_Hoc } else { "Chưa xếp lịch" })</div>
-                <div class="cover-badge">&#x23F0; Mở lúc: $($row.Gio_Mo)</div>
+                <div class="cover-badge">&#x1F4C5; Ng&#224;y h&#7883;c: $(if ($row.Ngay_Hoc) { $row.Ngay_Hoc } else { "Ch&#432;a x&#7871;p l&#7883;ch" })</div>
+                <div class="cover-badge">&#x23F0; M&#7903; l&#250;c: $($row.Gio_Mo)</div>
             </div>
         </div>
         <div class="cover-footer">
-            <button class="nb" onclick="go(1)" style="background:var(--yellow); color:var(--dark-blue); border:none; width:100%; padding: 15px; font-weight:800; border-radius:12px; font-size:16px; cursor:pointer;">BẮT ĐẦU LUYỆN TẬP &#x1F680;</button>
+            <button class="nb" onclick="go(1)" style="background:var(--yellow); color:var(--dark-blue); border:none; width:100%; padding: 15px; font-weight:800; border-radius:12px; font-size:16px; cursor:pointer;">B&#7854;T Đ&#7846;U LUY&#7878;N T&#7852;P &#x1F680;</button>
         </div>
     </div>
 </div>
@@ -243,14 +243,14 @@ foreach ($row in $csvData) {
                 $optD = $Matches[5].Trim()
                 if ($qText -match '^(?:\u0110|\u0111|[Dd])[^:\n]+:\s*(.*)') { $qText = $Matches[1].Trim() }
             } else {
-                Write-Host "  âš ï¸ Loi dinh dang cau hoi so $qIndex, vui long kiem tra cu phap A. B. C. D." -ForegroundColor Red
+                Write-Host "  ⚠️  Loi dinh dang cau hoi so $qIndex, vui long kiem tra cu phap A. B. C. D." -ForegroundColor Red
                 continue
             }
 
             $slideHtml = @"
 <div class="slide" id="slide-$qIndex">
     <div class="question-card" data-correct="$qCorrect" data-level="$qLevel">
-        <div class="q-number">Câu $qIndex</div>
+        <div class="q-number">C&#226;u $qIndex</div>
         <div class="q-content">$qText</div>
         <div class="options-grid">
             <div class="option" data-ans="A"><span class="opt-label">A.</span><span class="opt-text">$optA</span></div>
@@ -259,7 +259,7 @@ foreach ($row in $csvData) {
             <div class="option" data-ans="D"><span class="opt-label">D.</span><span class="opt-text">$optD</span></div>
         </div>
         <div class="solution">
-            <div class="solution-title">Lời giải chi tiết <span class="ans-circle">$qCorrect</span></div>
+            <div class="solution-title">L&#7901;i gi&#7843;i chi ti&#7871;t <span class="ans-circle">$qCorrect</span></div>
             <div class="sol-body">$qSol</div>
         </div>
     </div>
@@ -289,7 +289,7 @@ foreach ($row in $csvData) {
 $updatedRows | Export-Csv $CsvPath -NoTypeInformation -Encoding UTF8
 Write-Host "Da cap nhat quan_ly_buoi.csv!" -ForegroundColor Green
 
-# 5. Update máº£ng BUOI trong index.html
+# 5. Update mảng BUOI trong index.html
 Write-Host "Cap nhat index.html..." -ForegroundColor Cyan
 
 $jsonArr = @()
@@ -322,4 +322,3 @@ Write-Host "Da cap nhat mang BUOI trong index.html!" -ForegroundColor Green
 Invoke-GitPush -CommitMessage "Auto-sync Vung Goc 11 $(Get-Date -Format 'yyyy-MM-dd HH:mm')" -RemoteHint "git remote add origin https://github.com/loptoancachep/vunggoc-11.git"
 
 Write-Host "Hoan thanh dong bo Vung Goc 11!" -ForegroundColor Green
-Write-Host ""
