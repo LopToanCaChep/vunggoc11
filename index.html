@@ -178,7 +178,7 @@ body {
 
   <!-- Hero -->
   <section class="hub-hero">
-    <h1 id="heroTitle">Lớp Ôn Thi Vững Gốc 11<br>Toán Thầy Huy</h1>
+    <h1 id="heroTitle">KHÓA VỮNG GỐC 11</h1>
     <p id="heroSub">Chép lý thuyết trước ở nhà — Lên lớp chiến trắc nghiệm tự chấm</p>
   </section>
 
@@ -254,7 +254,16 @@ function formatUnlockTime(ngayMoStr, gioMoStr) {
         const thu = thuArr[d.getDay()];
         const ngay = String(d.getDate()).padStart(2, '0');
         const thang = String(d.getMonth() + 1).padStart(2, '0');
-        return `Mở ${gioMoStr} sáng ${thu}, ${ngay}/${thang}`;
+        
+        const gio = parseInt(gioMoStr.split(':')[0], 10);
+        let buoi = 'sáng';
+        if (gio >= 12 && gio < 18) {
+            buoi = 'chiều';
+        } else if (gio >= 18) {
+            buoi = 'tối';
+        }
+        
+        return `Mở ${gioMoStr} ${buoi} ${thu}, ${ngay}/${thang}`;
     } catch(e) {
         return `Mở ngày ${ngayMoStr} lúc ${gioMoStr}`;
     }
