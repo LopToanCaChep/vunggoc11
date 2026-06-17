@@ -202,7 +202,7 @@ foreach ($row in $csvData) {
             </div>
         </div>
         <div class="cover-footer">
-            <button class="nb" onclick="go(1)" style="background:var(--yellow); color:var(--dark-blue); border:none; width:100%; padding: 15px; font-weight:800; border-radius:12px; font-size:16px; cursor:pointer;">B&#7854;T Đ&#7846;U LUY&#7878;N T&#7852;P &#x1F680;</button>
+            <button class="nb" onclick="go(1)" style="background:var(--yellow); color:var(--dark-blue); border:none; width:100%; padding: 15px; font-weight:800; border-radius:12px; font-size:16px; cursor:pointer;">B&#7854;T &#272;&#7846;U LUY&#7878;N T&#7852;P &#x1F680;</button>
         </div>
     </div>
 </div>
