@@ -35,6 +35,20 @@ if (Test-Path $CsvPath) {
 }
 
 # Convert Markdown Table to HTML Table
+
+# Escape HTML characters to prevent breaking DOM layout
+function Escape-HtmlChars {
+    param (
+        [string]$text
+    )
+    if ([string]::IsNullOrEmpty($text)) { return $text }
+    # Escape standard HTML chars
+    $escaped = $text.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;")
+    # Restore valid HTML tags if any (like br)
+    $escaped = $escaped.Replace("&lt;br&gt;", "<br>").Replace("&lt;br/&gt;", "<br />").Replace("&lt;br /&gt;", "<br />")
+    return $escaped
+}
+
 function Convert-MarkdownTableToHtml {
     param (
         [string]$TableText
@@ -48,7 +62,8 @@ function Convert-MarkdownTableToHtml {
     $headers = ($lines[0] -split '\|') | Where-Object { $_.Trim() -ne "" }
     $html += "<tr>"
     foreach ($h in $headers) {
-        $html += "<th>$($h.Trim())</th>"
+        $val = Escape-HtmlChars -text ($h.Trim())
+        $html += "<th>$val</th>"
     }
     $html += "</tr></thead><tbody>"
 
@@ -58,7 +73,8 @@ function Convert-MarkdownTableToHtml {
         if ($cols.Count -gt 0) {
             $html += "<tr>"
             foreach ($c in $cols) {
-                $html += "<td>$($c.Trim())</td>"
+                $val = Escape-HtmlChars -text ($c.Trim())
+                $html += "<td>$val</td>"
             }
             $html += "</tr>"
         }
@@ -102,49 +118,57 @@ function Parse-TheoryMarkdown {
 
         # Heading 3 (###)
         if ($line -match '^###\s+(.*)') {
-            $htmlLines += "<h3 class='theory-h3'>$($Matches[1])</h3>"
+            $val = Escape-HtmlChars -text $Matches[1]
+            $htmlLines += "<h3 class='theory-h3'>$val</h3>"
             continue
         }
 
         # Heading 2 (##)
         if ($line -match '^##\s+(.*)') {
-            $htmlLines += "<h2 class='theory-h2'>$($Matches[1])</h2>"
+            $val = Escape-HtmlChars -text $Matches[1]
+            $htmlLines += "<h2 class='theory-h2'>$val</h2>"
             continue
         }
 
         # Warning/Warning blockquote (> Luu y:)
         # Matching variants of "> Luu y" or "> Chu y" without accented characters
         if ($line -match '^>\s*(?:L[^\n]+u\s+y|Ch[^\n]+\s+y):\s*(.*)') {
-            $htmlLines += "<div class='theory-block warning'><div class='theory-block-title'>L&#x01B0;u &yacute;</div><div class='theory-text'>$($Matches[1])</div></div>"
+            $val = Escape-HtmlChars -text $Matches[1]
+            $htmlLines += "<div class='theory-block warning'><div class='theory-block-title'>L&#x01B0;u &yacute;</div><div class='theory-text'>$val</div></div>"
             continue
         }
         
         # Tip blockquote (> Meo:)
         if ($line -match '^>\s*M[^\n]+o:\s*(.*)') {
-            $htmlLines += "<div class='theory-block tip'><div class='theory-block-title'>M&#x1EB9;o</div><div class='theory-text'>$($Matches[1])</div></div>"
+            $val = Escape-HtmlChars -text $Matches[1]
+            $htmlLines += "<div class='theory-block tip'><div class='theory-block-title'>M&#x1EB9;o</div><div class='theory-text'>$val</div></div>"
             continue
         }
 
         # Method blockquote (> Phuong phap:)
         if ($line -match '^>\s*Ph[^\n]+ong\s+ph[^\n]+p:\s*(.*)') {
-            $htmlLines += "<div class='theory-block method'><div class='theory-block-title'>Ph&#x01B0;&#x01A1;ng ph&aacute;p gi&#x1EA3;i</div><div class='theory-text'>$($Matches[1])</div></div>"
+            $val = Escape-HtmlChars -text $Matches[1]
+            $htmlLines += "<div class='theory-block method'><div class='theory-block-title'>Ph&#x01B0;&#x01A1;ng ph&aacute;p gi&#x1EA3;i</div><div class='theory-text'>$val</div></div>"
             continue
         }
 
         # General blockquote (> ...)
         if ($line -match '^>\s*(.*)') {
-            $htmlLines += "<div class='theory-block summary'><div class='theory-block-title'>T&oacute;m t&#x1EAF;t ki&#x1EBF;n th&#x1EE9;c</div><div class='theory-text'>$($Matches[1])</div></div>"
+            $val = Escape-HtmlChars -text $Matches[1]
+            $htmlLines += "<div class='theory-block summary'><div class='theory-block-title'>T&oacute;m t&#x1EAF;t ki&#x1EBF;n th&#x1EE9;c</div><div class='theory-text'>$val</div></div>"
             continue
         }
 
         # Bullet lists (- or *)
         if ($line -match '^[-*]\s*(.*)') {
-            $htmlLines += "<div class='theory-item'><div class='theory-bullet'></div><div class='theory-text'>$($Matches[1])</div></div>"
+            $val = Escape-HtmlChars -text $Matches[1]
+            $htmlLines += "<div class='theory-item'><div class='theory-bullet'></div><div class='theory-text'>$val</div></div>"
             continue
         }
 
         # Normal text
-        $htmlLines += "<p class='theory-text'>$line</p>"
+        $val = Escape-HtmlChars -text $line
+        $htmlLines += "<p class='theory-text'>$val</p>"
     }
 
     if ($inTable) {
@@ -259,20 +283,27 @@ foreach ($row in $csvData) {
                 continue
             }
 
+            $qTextEsc = Escape-HtmlChars -text $qText
+            $optAEsc = Escape-HtmlChars -text $optA
+            $optBEsc = Escape-HtmlChars -text $optB
+            $optCEsc = Escape-HtmlChars -text $optC
+            $optDEsc = Escape-HtmlChars -text $optD
+            $qSolEsc = Escape-HtmlChars -text $qSol
+
             $slideHtml = @"
 <div class="slide" id="slide-$qIndex">
     <div class="question-card" data-correct="$qCorrect" data-level="$qLevel">
         <div class="q-number">C&#226;u $qIndex</div>
-        <div class="q-content">$qText</div>
+        <div class="q-content">$qTextEsc</div>
         <div class="options-grid">
-            <div class="option" data-ans="A"><span class="opt-label">A.</span><span class="opt-text">$optA</span></div>
-            <div class="option" data-ans="B"><span class="opt-label">B.</span><span class="opt-text">$optB</span></div>
-            <div class="option" data-ans="C"><span class="opt-label">C.</span><span class="opt-text">$optC</span></div>
-            <div class="option" data-ans="D"><span class="opt-label">D.</span><span class="opt-text">$optD</span></div>
+            <div class="option" data-ans="A"><span class="opt-label">A.</span><span class="opt-text">$optAEsc</span></div>
+            <div class="option" data-ans="B"><span class="opt-label">B.</span><span class="opt-text">$optBEsc</span></div>
+            <div class="option" data-ans="C"><span class="opt-label">C.</span><span class="opt-text">$optCEsc</span></div>
+            <div class="option" data-ans="D"><span class="opt-label">D.</span><span class="opt-text">$optDEsc</span></div>
         </div>
         <div class="solution">
             <div class="solution-title">L&#7901;i gi&#7843;i chi ti&#7871;t <span class="ans-circle">$qCorrect</span></div>
-            <div class="sol-body">$qSol</div>
+            <div class="sol-body">$qSolEsc</div>
         </div>
     </div>
 </div>
