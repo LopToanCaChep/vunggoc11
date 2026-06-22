@@ -332,19 +332,8 @@ Lời giải: $2 \cos x-\sqrt{2}=0 \Leftrightarrow \cos x=\frac{\sqrt{2}}{2} \Le
 Đề: Giải phương trình $2 \cos x-1=0$
 A. $x= \pm \frac{\pi}{3}+k \pi, k \in \mathbb{Z}$.
 B. $\left[\begin{array}{l}x=\frac{\pi}{3}+k 2 \pi \\ x=\frac{2 \pi}{3}+k 2 \pi\end{array}, k \in \mathbb{Z}\right.$.
-
-$$
-\text { C. } x= \pm \frac{\pi}{3}+k 2 \pi, k \in \mathbb{Z} . \mathbf{D} \cdot\left[\begin{array}{l}
-x=\frac{\pi}{3}+k \pi \\
-x=\frac{2 \pi}{3}+k \pi
-\end{array}, k \in \mathbb{Z} .\right.
-$$
-
-## Lời giải
-
-$\mathrm{TXĐ}: D=\mathbb{R}$. Ta có $2 \cos x-1=0 \Leftrightarrow \cos x=\frac{1}{2} \Leftrightarrow x= \pm \frac{\pi}{3}+k 2 \pi, k \in \mathbb{Z}$.
-C. 
-D. 
+C. $x= \pm \frac{\pi}{3}+k 2 \pi, k \in \mathbb{Z}$.
+D. $\left[\begin{array}{l}x=\frac{\pi}{3}+k \pi \\ x=\frac{2 \pi}{3}+k \pi\end{array}, k \in \mathbb{Z}.\right.$
 Lời giải: $\mathrm{TXĐ}: D=\mathbb{R}$. Ta có $2 \cos x-1=0 \Leftrightarrow \cos x=\frac{1}{2} \Leftrightarrow x= \pm \frac{\pi}{3}+k 2 \pi, k \in \mathbb{Z}$.
 
 ## CÂU 19  | level: tb | đáp án: C
@@ -504,10 +493,6 @@ A. 5 .
 B. -2 .
 C. $\frac{19}{3}$.
 D. 6 .
-
-Phương trình đã cho có nghiệm khi $-1 \leq 3 m-5 \leq 1 \Leftrightarrow 4 \leq 3 m \leq 6 \Leftrightarrow \frac{4}{3} \leq m \leq 2$.
-Khi đó tập hợp tất cả các giá trị của $m$ để phương trình có nghiệm là $\left[\frac{4}{3} ; 2\right]$.
-Ta được $a=\frac{4}{3} ; b=2$. Suy ra $3 a+b=6$.
 Lời giải: Phương trình đã cho có nghiệm khi $-1 \leq 3 m-5 \leq 1 \Leftrightarrow 4 \leq 3 m \leq 6 \Leftrightarrow \frac{4}{3} \leq m \leq 2$.
 Khi đó tập hợp tất cả các giá trị của $m$ để phương trình có nghiệm là $\left[\frac{4}{3} ; 2\right]$.
 Ta được $a=\frac{4}{3} ; b=2$. Suy ra $3 a+b=6$.
